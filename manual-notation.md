@@ -77,17 +77,35 @@ A full paper is a chain of sections. Each section's exit state must match the ne
 
 [InitialReaderState]
   ↓ SECTION 1: Introduction
-[SharedKnowledge ⊗ Puzzle]
-  ↓ SECTION 2: NC Approaches
-[NCApproachEstablished]
-  ↓ SECTION 3: OC Approaches
-[OCFrameworkEstablished]
-  ↓ SECTION 4: OC informs NC
-[SynergyMotivated]
-  ↓ SECTION 5: Points of Synergy
-[SynergyDemonstrated]
+[FieldEstablished ⊗ Puzzle]
+  ↓ SECTION 2: Background / Prior Work
+[BackgroundEstablished]
+  ↓ SECTION 3: Core Argument
+[ThesisEstablished]
+  ↓ SECTION 4: Elaboration / Evidence
+[ThesisDeveloped]
+  ↓ SECTION 5: Discussion
+[ImplicationsDrawn]
   ↓ SECTION 6: Conclusion
-[ImplicationEstablished]
+[Implication]
+```
+
+For a review paper, the chain looks different — `Corpus` and `Gap` are first-class states:
+
+```
+=== REVIEW PAPER TITLE ===
+
+[InitialReaderState]
+  ↓ SECTION 1: Introduction + Scope
+[SearchScope]
+  ↓ SECTION 2: Literature Survey
+[Corpus]
+  ↓ SECTION 3: Thematic Analysis   (one pass per theme)
+[ThematicStructure]
+  ↓ SECTION 4: Synthesis + Gaps
+[Synthesis ⊗ Gap]
+  ↓ SECTION 5: Future Directions
+[Implication]
 ```
 
 ---
@@ -97,22 +115,20 @@ A full paper is a chain of sections. Each section's exit state must match the ne
 A section at the paper level can be "zoomed into" to reveal its internal claim chain. The zoom is valid if the internal chain's entry/exit states match the section's entry/exit at the paper level.
 
 ```
-SECTION 3: OC Approaches
-  entry:  [NCApproachEstablished]
-  exit:   [OCFrameworkEstablished]
+SECTION 3: Core Argument
+  entry:  [BackgroundEstablished]
+  exit:   [ThesisEstablished]
   zoom ↓
-    [NCApproachEstablished]
-      ↓ ? oc_gradient_view (T)
-    [GradientView]
-      ↓ ? epistemic_limits (R)
-    [EpistemicLimits]
-      ↓ * hard_problem_framing (R)
-    [HardProblemContext]
-      ...
-    [OCFrameworkEstablished]   ← must match exit above
+    [BackgroundEstablished]
+      ↓ ? claim_one (T)
+    [IntermediateState]
+      ↓ ? claim_two (E)
+    [AnotherState]
+      ↓ * claim_three (R)
+    [ThesisEstablished]   ← must match exit above
 ```
 
-If the zoomed chain does not reach `[OCFrameworkEstablished]`, the section does not fulfil its promise at the paper level.
+If the zoomed chain does not reach `[ThesisEstablished]`, the section does not fulfil its promise at the paper level.
 
 ---
 
@@ -133,7 +149,7 @@ Naked assertions `(!)` appear here with no entries — they are the claims that 
 
 ## Status workflow
 
-Work left-to-right across the status ladder. Never write prose for a claim whose upstream states are still stubs — fix topology first, then write.
+Work top-to-bottom along the status ladder. Never write prose for a claim whose upstream states are still stubs — fix topology first, then write.
 
 ```
 ?  stub     — note exists, claim not yet formulated

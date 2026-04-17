@@ -11,16 +11,56 @@ Two versions are provided: a **code version** built on category theory (Julia + 
 Every claim in a paper presupposes something the reader already knows and establishes something new. Writing is hard when these dependencies are implicit. The notation makes them explicit:
 
 ```
-[NCApproachEstablished]
-  ↓ * hard_problem_framing (R)   "Nagel/Chalmers: why/how does it feel?"
-[HardProblemContext]
-  ↓ ? cell_energy_physics (T)    "thermodynamics, energy gradients"
-[SingleCellThermo]
+[SharedKnowledge]
+  ↓ * background_survey (R)    "field surveys, canonical frameworks"
+[FieldEstablished]
+  ↓ ? gap_identification (!)   "author's inference — no citation needed"
+[Puzzle]
 ```
 
 An unbroken chain from a section's entry state to its exit state means the section is structurally ready to write. A gap or a floating node means something is missing.
 
 Unsupported claims are flagged by `(!)` — they have no literature wire, making naked assertions visible before submission rather than during review.
+
+---
+
+## Supported paper types
+
+### Empirical / scientific paper
+
+Standard hypothesis-driven structure: context → gap → hypothesis → evidence → result → conclusion. Literature wires on methodology and analysis; discussion is inference.
+
+### Philosophical / theoretical paper
+
+Dialectical structure: background survey → contested territory → gap identification → dialectic (position survey) → proposal → elaboration → defense → conclusion. Three distinct literature types reflect different evidentiary roles: review lit settles shared ground, empirical lit is load-bearing in the contested survey, theoretical lit grounds the dialectic.
+
+### Review paper
+
+Literature is the primary input throughout, not supporting evidence for claims. Key structural differences:
+
+- **Scope definition** makes inclusion/exclusion criteria explicit before collection
+- **Thematic analysis** is iterative — the same corpus wire passes through once per theme, each requiring its own literature slice; adding a theme means adding one morphism
+- **Gap analysis** is a first-class output, not incidental — the paper cannot reach its conclusion without producing a `Gap` wire, enforcing that identifying gaps is mandatory
+
+```
+[Background]
+  ↓ framing
+[ResearchQuestion ⊗ Background]
+  ↓ scope_definition
+[SearchScope]
+  ↓ literature_collection (R)
+[Corpus]
+  ↓ thematic_analysis (R)   ← repeat per theme
+[Corpus ⊗ Theme]
+  ↓ thematic_structure
+[ThematicStructure]
+  ↓ cross_theme_synthesis
+[Synthesis ⊗ Gap]
+  ↓ gap_analysis
+[Synthesis ⊗ Agenda]
+  ↓ future_directions
+[Implication]
+```
 
 ---
 
@@ -41,7 +81,7 @@ No software required. Full syntax in [`manual-notation.md`](manual-notation.md).
 
 ### Workflow
 
-1. List your `//` notes or fragments
+1. List your notes or fragments
 2. For each note, write: what must the reader already know (`from`) and what do they know after (`to`)
 3. Arrange as a vertical chain — check for gaps
 4. Naked assertions `(!)` flag where you need a citation or need to reframe as inference
@@ -50,19 +90,15 @@ No software required. Full syntax in [`manual-notation.md`](manual-notation.md).
 ### Section draft (paper and pencil)
 
 ```
-=== SECTION 3: OC Approaches ===
-entry:  [NCApproachEstablished]
-exit:   [OCFrameworkEstablished]
+=== SECTION TITLE ===
+entry:  [EntryState]
+exit:   [ExitState]
 
-[NCApproachEstablished]
-  ↓ ? oc_gradient_view (T)       "OC: no sharp division; consciousness in degrees"
-[GradientView]
-  ↓ ? epistemic_limits (R)       "third-person access limited but non-zero"
-[EpistemicLimits]
-  ↓ * hard_problem_framing (R)   "Nagel/Chalmers: why/how does it feel?"
-[HardProblemContext]
-  ...
-[OCFrameworkEstablished]
+[EntryState]
+  ↓ ? claim_one (T)    "note on what this claim does"
+[IntermediateState]
+  ↓ * claim_two (R)    "note"
+[ExitState]
 ```
 
 ### Paper-level structure
@@ -72,12 +108,12 @@ Sections chain the same way claims do. Each section's exit state must equal the 
 ```
 [InitialReaderState]
   ↓ SECTION 1: Introduction
-[SharedKnowledge ⊗ Puzzle]
-  ↓ SECTION 2: NC Approaches
-[NCApproachEstablished]
-  ↓ SECTION 3: OC Approaches
-[OCFrameworkEstablished]
+[FieldEstablished ⊗ Puzzle]
+  ↓ SECTION 2: ...
+[SectionTwoExit]
+  ↓ SECTION 3: ...
   ...
+[Implication]
 ```
 
 ---
@@ -100,30 +136,25 @@ using Pkg; Pkg.add(["Catlab", "GATlab"])
 ### Running
 
 ```bash
-julia src/rhythm-tubes.jl
+# Generic schema diagrams (scientific, philosophical, review)
+julia src/notation-examples.jl
+
+# Paper-specific driver (add your own paper file here)
+julia src/your-paper.jl
 ```
 
-Produces in `out/`:
-
-| File | Contents |
-|------|----------|
-| `sec3_draft.svg` | Section 3 claim-level draft with status colours |
-| `rhythm_tubes.svg` | Full paper argument diagram |
-| `philosophical_cited.svg` | Generic cited philosophical paper schema |
-| `philosophical_paper.svg` | Generic philosophical paper schema |
-| `scientific_paper.svg` | Generic scientific paper schema |
-| `out.txt` | Full bibliography summary |
+Diagrams are saved as SVGs in `out/`.
 
 ### File layout
 
 ```
 src/
-  notation-gat.jl     generic framework — schemas, SectionDraft, BibRegistry
-  rhythm-tubes.jl     paper-specific — RhythmAndTubes schema, sec3 draft, registry
-papers/
-  consc-paper-ast-as-tat.md   source paper being notated
-out/                  generated diagrams and text (do not edit by hand)
-manual-notation.md    paper-and-pencil syntax reference
+  notation-gat.jl        library — schemas, SectionDraft, BibRegistry, save_diagram
+  notation-examples.jl   generates documentation diagrams for all generic schemas
+  your-paper.jl          paper-specific schema, registry, section drafts
+papers/                  source documents being notated
+out/                     generated diagrams and text (do not edit by hand)
+manual-notation.md       paper-and-pencil syntax reference
 ```
 
 ### Diagram status colours
@@ -132,23 +163,24 @@ manual-notation.md    paper-and-pencil syntax reference
 |--------|--------|
 | Yellow | Stub — not yet written |
 | Blue | Drafted — prose written, no citation |
-| Green | Cited — citation present |
+| Peach | Cited — citation present |
 | Pale green | Complete |
 
 ### Adding a new paper
 
-1. Add a new `@present YourPaper(FreeSymmetricMonoidalCategory)` block defining your section morphisms (see `notation-gat.jl` for examples)
-2. Wire a `@program` outline
-3. Create a `BibRegistry` mapping morphism names to `BibEntry` values
-4. Add a `SectionDraft` for any section under active development
-5. Call `save_diagram` and `save_section_diagram` in the output block
+1. Create `src/your-paper.jl`, include `notation-gat.jl`
+2. Add a `@present YourPaper(FreeSymmetricMonoidalCategory)` block — sections as typed morphisms
+3. Wire a `@program` outline
+4. Create a `BibRegistry` mapping morphism names to `BibEntry` values
+5. Add a `SectionDraft` for any section under active development
+6. Call `save_diagram` and `save_section_diagram` to produce output
 
 ### Bibliography pipeline
 
-The `BibRegistry` maps morphism names to cite keys that must match your `.bib` file:
+The `BibRegistry` maps morphism names to cite keys matching your `.bib` file:
 
 ```julia
-render_citations(registry, :background_survey)  # → \cite{Nagel1974,Chalmers1995,...}
+render_citations(registry, :background_survey)  # → \cite{key1,key2,...}
 all_cite_keys(registry)                          # → minimal key list for bibtool filtering
 print_bib_summary(registry)                      # → full annotated listing
 ```

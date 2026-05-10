@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  ArgMap Dark theme
+  Based on One Dark Pro palette (background #282C34).
+  Scope assignments follow argmap-theme-spec.yml.
+  Install for bat: copy to $(bat --config-dir)/themes/ then run: bat cache --build
+-->
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>ArgMap Dark</string>
+  <key>settings</key>
+  <array>
+
+    <!-- ── Global ─────────────────────────────────────────────────────────── -->
+    <dict>
+      <key>settings</key>
+      <dict>
+        <key>background</key>  <string>#282C34</string>
+        <key>foreground</key>  <string>#ABB2BF</string>
+        <key>caret</key>       <string>#528BFF</string>
+        <key>selection</key>   <string>#3E4451</string>
+      </dict>
+    </dict>
+
+    <!-- ── Section header  === TITLE === ──────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Section Header</string>
+      <key>scope</key>   <string>markup.heading.section.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#E5C07B</string>
+        <key>fontStyle</key>   <string>bold</string>
+      </dict>
+    </dict>
+
+    <!-- ── State nodes [State] ────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap State Node</string>
+      <key>scope</key>   <string>entity.name.type.state.argmap, punctuation.definition.state.begin.argmap, punctuation.definition.state.end.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#61AFEF</string>
+        <key>fontStyle</key>   <string>bold</string>
+      </dict>
+    </dict>
+
+    <!-- ── Operators: ↓ and ⊗ ─────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Operators</string>
+      <key>scope</key>   <string>keyword.operator.arrow.argmap, keyword.operator.tensor.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#C678DD</string>
+      </dict>
+    </dict>
+
+    <!-- ── entry: / exit: ────────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Declaration Keywords</string>
+      <key>scope</key>   <string>keyword.declaration.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#7F848E</string>
+        <key>fontStyle</key>   <string>italic</string>
+      </dict>
+    </dict>
+
+    <!-- ── Status: ? stub ─────────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Status Stub</string>
+      <key>scope</key>   <string>constant.language.status.stub.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#E06C75</string>
+        <key>fontStyle</key>   <string>bold</string>
+      </dict>
+    </dict>
+
+    <!-- ── Status: ~ drafted ──────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Status Drafted</string>
+      <key>scope</key>   <string>constant.language.status.drafted.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#D19A66</string>
+      </dict>
+    </dict>
+
+    <!-- ── Status: * cited ────────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Status Cited</string>
+      <key>scope</key>   <string>constant.language.status.cited.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#98C379</string>
+      </dict>
+    </dict>
+
+    <!-- ── Status: ✓ complete ─────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Status Complete</string>
+      <key>scope</key>   <string>constant.language.status.complete.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#98C379</string>
+        <key>fontStyle</key>   <string>bold</string>
+      </dict>
+    </dict>
+
+    <!-- ── Claim label ────────────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Claim Label</string>
+      <key>scope</key>   <string>entity.name.function.claim.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#ABB2BF</string>
+      </dict>
+    </dict>
+
+    <!-- ── Wire: (E) empirical ────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Wire Empirical</string>
+      <key>scope</key>   <string>support.type.wire.empirical.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#98C379</string>
+      </dict>
+    </dict>
+
+    <!-- ── Wire: (T) theoretical ──────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Wire Theoretical</string>
+      <key>scope</key>   <string>support.type.wire.theoretical.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#56B6C2</string>
+      </dict>
+    </dict>
+
+    <!-- ── Wire: (R) review ───────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Wire Review</string>
+      <key>scope</key>   <string>support.type.wire.review.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#D19A66</string>
+      </dict>
+    </dict>
+
+    <!-- ── Wire: (!) naked assertion ──────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Naked Assertion</string>
+      <key>scope</key>   <string>invalid.illegal.naked-assertion.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#E06C75</string>
+        <key>fontStyle</key>   <string>bold</string>
+      </dict>
+    </dict>
+
+    <!-- ── Note string "..." ──────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Note String</string>
+      <key>scope</key>   <string>string.quoted.double.note.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#5C6370</string>
+        <key>fontStyle</key>   <string>italic</string>
+      </dict>
+    </dict>
+
+    <!-- ── Comments ───────────────────────────────────────────────────────── -->
+    <dict>
+      <key>name</key>    <string>ArgMap Comment</string>
+      <key>scope</key>   <string>comment.line.number-sign.argmap</string>
+      <key>settings</key>
+      <dict>
+        <key>foreground</key>  <string>#5C6370</string>
+        <key>fontStyle</key>   <string>italic</string>
+      </dict>
+    </dict>
+
+  </array>
+</dict>
+</plist>

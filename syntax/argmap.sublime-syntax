@@ -1,0 +1,86 @@
+%YAML 1.2
+---
+# ArgMap notation syntax definition
+# File extension: .amap
+# Install for bat: copy to $(bat --config-dir)/syntaxes/ then run: bat cache --build
+name: ArgMap
+file_extensions:
+  - amap
+scope: source.argmap
+
+contexts:
+  main:
+    # Comments
+    - match: '#.*$'
+      scope: comment.line.number-sign.argmap
+
+    # Section header  === TITLE ===
+    - match: '^\s*={3}.+={3}\s*$'
+      scope: markup.heading.section.argmap
+
+    # entry: / exit: declaration
+    - match: '^\s*(entry|exit)\s*:'
+      scope: keyword.declaration.argmap
+
+    # State node opening bracket — push into state_node context
+    - match: '\['
+      scope: punctuation.definition.state.begin.argmap
+      push: state_node
+
+    # Claim arrow — push into claim_line context
+    - match: '↓'
+      scope: keyword.operator.arrow.argmap
+      push: claim_line
+
+    # Tensor operator outside brackets (paper-level between states)
+    - match: '⊗'
+      scope: keyword.operator.tensor.argmap
+
+    # Fallthrough note string
+    - match: '"[^"]*"'
+      scope: string.quoted.double.note.argmap
+
+  # ── State node: content between [ and ] ──────────────────────────────────
+  state_node:
+    - match: '⊗'
+      scope: keyword.operator.tensor.argmap
+    - match: '\]'
+      scope: punctuation.definition.state.end.argmap
+      pop: true
+    - match: '[^\]⊗]+'
+      scope: entity.name.type.state.argmap
+
+  # ── Claim line: everything after ↓ ───────────────────────────────────────
+  claim_line:
+    # Status markers — ordered stub→complete
+    - match: '\?'
+      scope: constant.language.status.stub.argmap
+    - match: '~'
+      scope: constant.language.status.drafted.argmap
+    - match: '\*'
+      scope: constant.language.status.cited.argmap
+    - match: '✓'
+      scope: constant.language.status.complete.argmap
+
+    # Wire types — specific before general
+    - match: '\(!\)'
+      scope: invalid.illegal.naked-assertion.argmap
+    - match: '\(E\)'
+      scope: support.type.wire.empirical.argmap
+    - match: '\(T\)'
+      scope: support.type.wire.theoretical.argmap
+    - match: '\(R\)'
+      scope: support.type.wire.review.argmap
+
+    # Note string — pop after; rest of line is the note
+    - match: '"[^"]*"'
+      scope: string.quoted.double.note.argmap
+      pop: true
+
+    # claim_label: snake_case identifier
+    - match: '\b[a-z][a-z0-9_]*\b'
+      scope: entity.name.function.claim.argmap
+
+    # End of line
+    - match: '$\n?'
+      pop: true

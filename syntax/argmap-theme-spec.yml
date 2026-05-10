@@ -1,0 +1,98 @@
+# ArgMap Theme Specification
+# Generic color-role mapping — theme-independent.
+# Use this as the template when creating new themes (light, high-contrast, etc.).
+# Each entry: scope name → semantic role → suggested color category.
+#
+# To create a new theme: copy argmap-dark.tmTheme, replace hex values
+# guided by the color_role column below.
+
+tokens:
+
+  - scope: markup.heading.section.argmap
+    example: "=== SECTION 2: Prior Work ==="
+    color_role: heading
+    notes: bold; visually dominant; top of hierarchy
+
+  - scope: entity.name.type.state.argmap
+    example: "[ProblemFramed]"
+    color_role: type / node
+    notes: bold; the structural backbone of the chain
+
+  - scope: punctuation.definition.state.begin.argmap
+    example: "["
+    color_role: type / node
+    notes: same color as state content to read as a unit
+
+  - scope: punctuation.definition.state.end.argmap
+    example: "]"
+    color_role: type / node
+
+  - scope: keyword.operator.arrow.argmap
+    example: "↓"
+    color_role: operator
+    notes: morphism direction; visually distinct from states
+
+  - scope: keyword.operator.tensor.argmap
+    example: "⊗"
+    color_role: operator
+    notes: same color as arrow; both are structural operators
+
+  - scope: keyword.declaration.argmap
+    example: "entry:"  # also exit:
+    color_role: keyword
+    notes: subdued; metadata, not argument content
+
+  - scope: constant.language.status.stub.argmap
+    example: "?"
+    color_role: warning / incomplete
+    notes: signals work remaining; should draw attention
+
+  - scope: constant.language.status.drafted.argmap
+    example: "~"
+    color_role: warning-mild
+    notes: in-progress; less urgent than stub
+
+  - scope: constant.language.status.cited.argmap
+    example: "*"
+    color_role: ok / progress
+    notes: nearly done; positive signal
+
+  - scope: constant.language.status.complete.argmap
+    example: "✓"
+    color_role: success
+    notes: bold; visually affirming
+
+  - scope: entity.name.function.claim.argmap
+    example: "gap_in_prior_work"
+    color_role: identifier
+    notes: default foreground or slightly brightened; the claim name
+
+  - scope: support.type.wire.empirical.argmap
+    example: "(E)"
+    color_role: type-empirical
+    notes: distinct from T and R; suggest green (data, evidence)
+
+  - scope: support.type.wire.theoretical.argmap
+    example: "(T)"
+    color_role: type-theoretical
+    notes: suggest cyan/blue (formal, logical)
+
+  - scope: support.type.wire.review.argmap
+    example: "(R)"
+    color_role: type-review
+    notes: suggest amber/orange (accumulated literature)
+
+  - scope: invalid.illegal.naked-assertion.argmap
+    example: "(!)"
+    color_role: error / danger
+    notes: bold red; the primary smell indicator in the notation
+
+  - scope: string.quoted.double.note.argmap
+    example: '"one-line note or source"'
+    color_role: comment / annotation
+    notes: subdued; secondary information, like a code comment
+
+  - scope: comment.line.number-sign.argmap
+    example: "# a comment"
+    color_role: comment
+    notes: most subdued; purely informational

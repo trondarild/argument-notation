@@ -1,0 +1,94 @@
+{
+  "name": "ArgMap Dark",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#282C34",
+    "editor.foreground": "#ABB2BF",
+    "editorCursor.foreground": "#528BFF",
+    "editor.selectionBackground": "#3E4451"
+  },
+  "tokenColors": [
+    {
+      "name": "Section header",
+      "scope": "markup.heading.section.argmap",
+      "settings": { "foreground": "#E5C07B", "fontStyle": "bold" }
+    },
+    {
+      "name": "State node",
+      "scope": [
+        "entity.name.type.state.argmap",
+        "punctuation.definition.state.begin.argmap",
+        "punctuation.definition.state.end.argmap"
+      ],
+      "settings": { "foreground": "#61AFEF", "fontStyle": "bold" }
+    },
+    {
+      "name": "Operators (↓ and ⊗)",
+      "scope": [
+        "keyword.operator.arrow.argmap",
+        "keyword.operator.tensor.argmap"
+      ],
+      "settings": { "foreground": "#C678DD" }
+    },
+    {
+      "name": "entry / exit declaration",
+      "scope": "keyword.declaration.argmap",
+      "settings": { "foreground": "#7F848E", "fontStyle": "italic" }
+    },
+    {
+      "name": "Status: stub ?",
+      "scope": "constant.language.status.stub.argmap",
+      "settings": { "foreground": "#E06C75", "fontStyle": "bold" }
+    },
+    {
+      "name": "Status: drafted ~",
+      "scope": "constant.language.status.drafted.argmap",
+      "settings": { "foreground": "#D19A66" }
+    },
+    {
+      "name": "Status: cited *",
+      "scope": "constant.language.status.cited.argmap",
+      "settings": { "foreground": "#98C379" }
+    },
+    {
+      "name": "Status: complete ✓",
+      "scope": "constant.language.status.complete.argmap",
+      "settings": { "foreground": "#98C379", "fontStyle": "bold" }
+    },
+    {
+      "name": "Claim label",
+      "scope": "entity.name.function.claim.argmap",
+      "settings": { "foreground": "#ABB2BF" }
+    },
+    {
+      "name": "Wire: (E) empirical",
+      "scope": "support.type.wire.empirical.argmap",
+      "settings": { "foreground": "#98C379" }
+    },
+    {
+      "name": "Wire: (T) theoretical",
+      "scope": "support.type.wire.theoretical.argmap",
+      "settings": { "foreground": "#56B6C2" }
+    },
+    {
+      "name": "Wire: (R) review",
+      "scope": "support.type.wire.review.argmap",
+      "settings": { "foreground": "#D19A66" }
+    },
+    {
+      "name": "Wire: (!) naked assertion",
+      "scope": "invalid.illegal.naked-assertion.argmap",
+      "settings": { "foreground": "#E06C75", "fontStyle": "bold" }
+    },
+    {
+      "name": "Note string",
+      "scope": "string.quoted.double.note.argmap",
+      "settings": { "foreground": "#5C6370", "fontStyle": "italic" }
+    },
+    {
+      "name": "Comment",
+      "scope": "comment.line.number-sign.argmap",
+      "settings": { "foreground": "#5C6370", "fontStyle": "italic" }
+    }
+  ]
+}

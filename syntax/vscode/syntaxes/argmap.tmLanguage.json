@@ -1,0 +1,77 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "ArgMap",
+  "scopeName": "source.argmap",
+  "fileTypes": ["amap"],
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#section_header" },
+    { "include": "#citations_header" },
+    { "include": "#meta_declaration" },
+    { "include": "#state_node" },
+    { "include": "#claim_line" },
+    { "include": "#tensor" },
+    { "include": "#wire_type" },
+    { "include": "#note_string" }
+  ],
+  "repository": {
+    "comment": {
+      "match": "#.*$",
+      "name": "comment.line.number-sign.argmap"
+    },
+    "section_header": {
+      "match": "^\\s*={3}.+={3}\\s*$",
+      "name": "markup.heading.section.argmap"
+    },
+    "citations_header": {
+      "match": "^CITATIONS\\s*$",
+      "name": "markup.heading.section.argmap"
+    },
+    "meta_declaration": {
+      "match": "^\\s*(entry|exit|zoom)\\s*[↓:]",
+      "captures": {
+        "1": { "name": "keyword.declaration.argmap" }
+      }
+    },
+    "state_node": {
+      "begin": "\\[",
+      "end": "\\]",
+      "beginCaptures": { "0": { "name": "punctuation.definition.state.begin.argmap" } },
+      "endCaptures":   { "0": { "name": "punctuation.definition.state.end.argmap" } },
+      "patterns": [
+        { "include": "#tensor" },
+        { "match": "[^\\]⊗]+", "name": "entity.name.type.state.argmap" }
+      ]
+    },
+    "claim_line": {
+      "begin": "↓",
+      "end": "$",
+      "beginCaptures": { "0": { "name": "keyword.operator.arrow.argmap" } },
+      "patterns": [
+        { "match": "\\?",  "name": "constant.language.status.stub.argmap" },
+        { "match": "~",    "name": "constant.language.status.drafted.argmap" },
+        { "match": "\\*",  "name": "constant.language.status.cited.argmap" },
+        { "match": "✓",    "name": "constant.language.status.complete.argmap" },
+        { "include": "#wire_type" },
+        { "include": "#note_string" },
+        { "match": "\\b[a-z][a-z0-9_]*\\b", "name": "entity.name.function.claim.argmap" }
+      ]
+    },
+    "tensor": {
+      "match": "⊗",
+      "name": "keyword.operator.tensor.argmap"
+    },
+    "wire_type": {
+      "patterns": [
+        { "match": "\\(!\\)", "name": "invalid.illegal.naked-assertion.argmap" },
+        { "match": "\\(E\\)", "name": "support.type.wire.empirical.argmap" },
+        { "match": "\\(T\\)", "name": "support.type.wire.theoretical.argmap" },
+        { "match": "\\(R\\)", "name": "support.type.wire.review.argmap" }
+      ]
+    },
+    "note_string": {
+      "match": "\"[^\"]*\"",
+      "name": "string.quoted.double.note.argmap"
+    }
+  }
+}

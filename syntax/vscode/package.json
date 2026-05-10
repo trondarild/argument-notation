@@ -1,0 +1,33 @@
+{
+  "name": "argmap-syntax",
+  "displayName": "ArgMap",
+  "description": "Syntax highlighting and dark theme for ArgMap (.amap) argument notation files",
+  "version": "0.1.0",
+  "publisher": "trondarild",
+  "engines": { "vscode": "^1.75.0" },
+  "categories": ["Programming Languages", "Themes"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "argmap",
+        "aliases": ["ArgMap", "argmap"],
+        "extensions": [".amap"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "argmap",
+        "scopeName": "source.argmap",
+        "path": "./syntaxes/argmap.tmLanguage.json"
+      }
+    ],
+    "themes": [
+      {
+        "label": "ArgMap Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/argmap-dark-color-theme.json"
+      }
+    ]
+  }
+}

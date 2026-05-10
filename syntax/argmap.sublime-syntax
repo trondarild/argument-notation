@@ -22,6 +22,10 @@ contexts:
     - match: '^\s*(entry|exit)\s*:'
       scope: keyword.declaration.argmap
 
+    # CITATIONS header
+    - match: '^CITATIONS\s*$'
+      scope: markup.heading.section.argmap
+
     # State node opening bracket — push into state_node context
     - match: '\['
       scope: punctuation.definition.state.begin.argmap
@@ -32,11 +36,21 @@ contexts:
       scope: keyword.operator.arrow.argmap
       push: claim_line
 
-    # Tensor operator outside brackets (paper-level between states)
+    # Tensor operator
     - match: '⊗'
       scope: keyword.operator.tensor.argmap
 
-    # Fallthrough note string
+    # Wire types — top-level so they highlight in citation blocks too
+    - match: '\(!\)'
+      scope: invalid.illegal.naked-assertion.argmap
+    - match: '\(E\)'
+      scope: support.type.wire.empirical.argmap
+    - match: '\(T\)'
+      scope: support.type.wire.theoretical.argmap
+    - match: '\(R\)'
+      scope: support.type.wire.review.argmap
+
+    # Note string
     - match: '"[^"]*"'
       scope: string.quoted.double.note.argmap
 
@@ -72,7 +86,7 @@ contexts:
     - match: '\(R\)'
       scope: support.type.wire.review.argmap
 
-    # Note string — pop after; rest of line is the note
+    # Note string
     - match: '"[^"]*"'
       scope: string.quoted.double.note.argmap
       pop: true

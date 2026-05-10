@@ -1,4 +1,4 @@
-# Argument Notation
+# ArgMap
 
 A notation system for structuring academic arguments before writing them. The core idea: model a paper as a graph where **nodes are reader knowledge states** and **edges are claims** that advance the reader from one state to the next. Making this structure explicit before writing prose exposes gaps, unsupported assertions, and ordering problems early.
 

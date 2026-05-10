@@ -1,4 +1,4 @@
-# Argument Notation — Manual Version
+# ArgMap — Manual Version
 
 A paper-and-pencil syntax for structuring academic arguments. Functionally equivalent to the categorical code version: states are objects, claims are morphisms, chains compose, and the zoom relation between levels mirrors functoriality.
 

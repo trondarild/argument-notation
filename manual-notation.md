@@ -22,18 +22,18 @@ A paper-and-pencil syntax for structuring academic arguments. Functionally equiv
 Single claim:
 ```
 [StateIn]
-  ↓ * claim_name (E)   "one-line note or source"
+  ↓ * claim_name (E)   "one-line note" [source]
 [StateOut]
 ```
 
 Chain of claims (composition):
 ```
 [A]
-  ↓ ? claim_one (T)   "note"
+  ↓ ? claim_one (T)   "note" [source-1]
 [B]
-  ↓ ~ claim_two (E)   "note"
+  ↓ ~ claim_two (E)   "note" [source-2]
 [C]
-  ↓ * claim_three (R) "note"
+  ↓ * claim_three (R) "note" [source-3]
 [D]
 ```
 
@@ -56,7 +56,7 @@ entry:  [EntryState]
 exit:   [ExitState]
 
 [EntryState]
-  ↓ * claim_one (R)    "background — what everyone accepts"
+  ↓ * claim_one (R)    "background — what everyone accepts" [Source-1, source-2]
 [IntermediateState]
   ↓ ? claim_two (E)    "load-bearing — each cited position needs support"
 [ContestedTerritory]

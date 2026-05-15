@@ -83,7 +83,7 @@
     {
       "name": "Note string",
       "scope": "string.quoted.double.note.argmap",
-      "settings": { "foreground": "#5C6370", "fontStyle": "italic" }
+      "settings": { "foreground": "#E3B74B", "fontStyle": "italic" }
     },
     {
       "name": "Comment",

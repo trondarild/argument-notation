@@ -1,0 +1,30 @@
+body {
+  background: #282C34;
+  margin: 0;
+}
+pre {
+  background: #282C34;
+  color: #ABB2BF;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 1.5em 2em;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* ArgMap Dark palette — matches bat/vim/vscode */
+.am-section  { color: #E5C07B; font-weight: bold; }
+.am-meta     { color: #7F848E; font-style: italic; }
+.am-comment  { color: #5C6370; font-style: italic; }
+.am-state    { color: #61AFEF; font-weight: bold; }
+.am-arrow    { color: #C678DD; }
+.am-tensor   { color: #C678DD; }
+.am-stub     { color: #E06C75; font-weight: bold; }
+.am-drafted  { color: #D19A66; }
+.am-cited    { color: #98C379; }
+.am-complete { color: #98C379; font-weight: bold; }
+.am-lit-e    { color: #98C379; }
+.am-lit-t    { color: #56B6C2; }
+.am-lit-r    { color: #D19A66; }
+.am-naked    { color: #E06C75; font-weight: bold; }
+.am-note     { color: #E3B74B; font-style: italic; }

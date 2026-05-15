@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "ArgMap Syntax Highlighting",
+  "version": "0.1.1",
+  "description": "Syntax highlighting for ArgMap (.amap) argument notation files opened locally in Chrome.",
+  "content_scripts": [
+    {
+      "matches": ["file:///*"],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_end"
+    }
+  ]
+}

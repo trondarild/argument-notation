@@ -46,7 +46,7 @@ hi def link argmapState         Type
 hi def link argmapArrow         Operator
 hi def link argmapStatus        Todo
 hi def link argmapTensor        Operator
-hi def link argmapNote          Comment
+hi argmapNote guifg=#E3B74B ctermfg=178 gui=italic cterm=NONE
 hi def link argmapCitLine       Identifier
 
 " Distinct colors for each wire type — palette matches ArgMap Dark (bat theme)

@@ -68,54 +68,105 @@ If you cannot draw an unbroken path from `entry` to `exit`, the section has a st
 
 ---
 
+## Identifier naming
+
+Section and subsection transitions in the paper-level chain use stable string identifiers — never numeric labels. Numeric labels break whenever a section is inserted, reordered, or removed. Identifiers remain valid across all such changes.
+
+**Prefix convention**
+
+| Level | Prefix | Example |
+|-------|--------|---------|
+| Top-level section | `sec_` | `sec_oc_approaches` |
+| Subsection | `subsec_` | `subsec_wakef_states` |
+
+**Forming a name** — take the shortest unambiguous snake_case string from the title. Drop articles, prepositions, and generic words (`and`, `the`, `of`, `as`). Keep the load-bearing content words. Aim for 2–4 tokens.
+
+```
+"Wakefulness states reorganize coordination"  →  subsec_wakef_states
+"Sensory modalities structure wakeful coord." →  subsec_sens_modal
+"Altered states as reconfigurations"          →  subsec_altered_states
+"Social coordination and what deficits reveal"→  subsec_soc_coord
+```
+
+**Inline annotation** — append the full title after ` — ` as a human-readable comment. The identifier is the stable key; the title is documentation.
+
+```
+↓ subsec_wakef_states — Wakefulness states reorganize coordination
+```
+
+Claim names follow the same snake_case convention without a prefix (they are not sections):
+
+```
+↓ * wakefulness_treated_as_scalar (!) "..."
+```
+
+---
+
 ## Paper-level syntax
 
-A full paper is a chain of sections. Each section's exit state must match the next section's entry state — this is the functoriality condition written by hand.
+A full paper is a chain of sections. Each section's exit state must match the next section's entry state — this is the functoriality condition written by hand. Use `sec_` identifiers, not numeric labels.
 
 ```
 === PAPER TITLE ===
 
 [InitialReaderState]
-  ↓ SECTION 1: Introduction
+  ↓ sec_introduction — Introduction
 [FieldEstablished ⊗ Puzzle]
-  ↓ SECTION 2: Background / Prior Work
+  ↓ sec_background — Background / Prior Work
 [BackgroundEstablished]
-  ↓ SECTION 3: Core Argument
+  ↓ sec_core_argument — Core Argument
 [ThesisEstablished]
-  ↓ SECTION 4: Elaboration / Evidence
+  ↓ sec_elaboration — Elaboration / Evidence
 [ThesisDeveloped]
-  ↓ SECTION 5: Discussion
+  ↓ sec_discussion — Discussion
 [ImplicationsDrawn]
-  ↓ SECTION 6: Conclusion
+  ↓ sec_conclusion — Conclusion
 [Implication]
 ```
 
-For a review paper, the chain looks different — `Corpus` and `Gap` are first-class states:
+For a review paper, `Corpus` and `Gap` are first-class states:
 
 ```
 === REVIEW PAPER TITLE ===
 
 [InitialReaderState]
-  ↓ SECTION 1: Introduction + Scope
+  ↓ sec_intro_scope — Introduction + Scope
 [SearchScope]
-  ↓ SECTION 2: Literature Survey
+  ↓ sec_lit_survey — Literature Survey
 [Corpus]
-  ↓ SECTION 3: Thematic Analysis   (one pass per theme)
+  ↓ sec_thematic — Thematic Analysis   (one pass per theme)
 [ThematicStructure]
-  ↓ SECTION 4: Synthesis + Gaps
+  ↓ sec_synthesis — Synthesis + Gaps
 [Synthesis ⊗ Gap]
-  ↓ SECTION 5: Future Directions
+  ↓ sec_future — Future Directions
 [Implication]
+```
+
+A paper with subsections uses `subsec_` for the inner chain:
+
+```
+[BackgroundEstablished]
+  ↓ sec_oc_approaches — Organism-centric approaches
+
+    [OC_Base]
+      ↓ subsec_oscillation — Oscillation
+    [OscillationEstablished]
+      ↓ subsec_wakef_states — Wakefulness states reorganize coordination
+    [WakefulnessConceptEstablished]
+      ↓ subsec_altered_states — Altered states as reconfigurations
+    [AlteredStatesFramed]
+
+[OC_Established]
 ```
 
 ---
 
 ## Zoom relation (functoriality on paper)
 
-A section at the paper level can be "zoomed into" to reveal its internal claim chain. The zoom is valid if the internal chain's entry/exit states match the section's entry/exit at the paper level.
+A section at the paper level can be "zoomed into" to reveal its internal claim chain. The zoom is valid if the internal chain's entry/exit states match the section's entry/exit at the paper level. The identifier in the paper-level chain is the same identifier used as the section header in the zoom.
 
 ```
-SECTION 3: Core Argument
+sec_core_argument — Core Argument
   entry:  [BackgroundEstablished]
   exit:   [ThesisEstablished]
   zoom ↓

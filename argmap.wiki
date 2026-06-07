@@ -1,0 +1,134 @@
+[[Argument structure]] > [[ArgMap]]
+[[Academic writing]] / [[ArgMap]]
+[[Category theory]] - [[ArgMap]]
+
+==Intuition==
+'''ArgMap''' is a pre-writing notation system for structuring academic arguments. The core idea is to model a paper as a directed graph where '''nodes are reader knowledge states''' — what the reader holds as established at a given point — and '''edges are claims''' that advance the reader from one state to the next. Making this dependency structure explicit before writing prose exposes gaps, unsupported assertions, and ordering problems early.
+
+ArgMap has two versions: a '''code version''' built on category theory (Julia + Catlab.jl) that generates wiring diagrams and manages bibliography, and a '''manual version''' for paper-and-pencil work that uses the same underlying logic with a lightweight ASCII syntax.
+
+The mathematical foundation is a [[symmetric monoidal category]] where objects are reader knowledge states and morphisms are paper sections or argument steps. Composing morphisms corresponds to composing arguments; a wiring diagram makes implicit argument dependencies explicit. The parallel input operator ⊗ (tensor product) represents cases where a claim requires two established states simultaneously.
+
+See also:
+* [[Argument map]] - visual representation of argument structure; ArgMap differs by making reader state transitions the primary object
+* [[Category theory]] - mathematical foundation; morphism composition models argument composition
+* [[Wiring diagram]] - the visualisation format used by the code version
+* [[Functoriality]] - the zoom relation between paper-level sections and claim-level chains is a structure-preserving functor
+
+==Properties==
+* [[displays::claim chain]] — argument flow as a sequential or branching morphism chain
+* [[displays::structural gap]] — any claim chain with no unbroken path from entry to exit state
+* [[displays::naked assertion]] — claims with no literature wire, flagged by (!)
+
+==Subsystems==
+* [[consists of::reader knowledge state]] — node; what the reader accepts as established
+* [[consists of::claim]] — edge/morphism; advances reader from one state to the next
+* [[consists of::literature wire]] — typed evidence attached to a claim: (E) empirical, (T) theoretical, (R) review
+* [[consists of::section draft]] — named claim chain with declared entry and exit state
+* [[consists of::BibRegistry]] — mapping from morphism names to .bib cite keys (code version)
+
+==Types==
+* [[has subtype::empirical paper schema]] — Context → Gap → Hypothesis → Evidence → Result → Conclusion
+* [[has subtype::philosophical paper schema]] — framing → dialectic → proposal → elaboration → defense → conclusion
+* [[has subtype::review paper schema]] — scope → corpus → thematic analysis → synthesis ⊗ gap → future directions
+
+==Manual notation==
+
+The manual version uses a minimal ASCII syntax:
+
+ [StateIn]
+   ↓ * claim_name (E)   "one-line note"
+ [StateOut]
+
+'''Symbols'''
+
+{| class="wikitable"
+|-
+! Symbol !! Meaning
+|-
+| <code>[State]</code> || Reader knowledge state
+|-
+| <code>↓ claim</code> || Claim advancing reader from state above to state below
+|-
+| <code>⊗</code> || Both states required simultaneously (parallel wires)
+|-
+| <code>(E)</code> <code>(T)</code> <code>(R)</code> || Empirical / Theoretical / Review literature
+|-
+| <code>(!)</code> || Naked assertion — no literature support
+|-
+| <code>?</code> <code>~</code> <code>*</code> <code>✓</code> || Stub / Drafted / Cited / Complete
+|}
+
+'''Status ladder''' — never write prose for a claim whose upstream is still a stub:
+
+ ?  stub     — note exists, claim not yet formulated
+ ~  drafted  — prose written, citation not yet inserted
+ *  cited    — citation present, not yet verified
+ ✓  complete — verified, fits in chain
+
+'''Section syntax'''
+
+ === SECTION TITLE ===
+ entry:  [EntryState]
+ exit:   [ExitState]
+
+ [EntryState]
+   ↓ * claim_one (R)    "background"
+ [IntermediateState]
+   ↓ ? claim_two (E)    "load-bearing"
+ [ExitState]
+
+'''Paper-level syntax''' — sections chain the same way claims do; adjacent sections must share a state. Section transitions use stable string identifiers with a <code>sec_</code> prefix (top-level sections) or <code>subsec_</code> prefix (subsections), never numeric labels. Numeric labels break whenever a section is inserted or reordered. The full title follows <code> — </code> as an optional annotation.
+
+ [InitialReaderState]
+   ↓ sec_introduction — Introduction
+ [FieldEstablished ⊗ Puzzle]
+   ↓ sec_background — Background
+ [BackgroundEstablished]
+   ↓ sec_core_argument — Core Argument
+ [ThesisEstablished]
+   ...
+ [Implication]
+
+Subsection chains inside a section follow the same convention with <code>subsec_</code>:
+
+ ↓ subsec_wakef_states — Wakefulness states reorganize coordination
+ ↓ subsec_altered_states — Altered states as reconfigurations
+
+Names are the shortest unambiguous snake_case string from the title (2–4 tokens; drop articles and prepositions).
+
+==Zoom relation==
+
+A section at the paper level can be ''zoomed into'' to reveal its internal claim chain. The zoom is valid (functorial) if the internal chain's entry and exit states match the section's declared entry and exit at the paper level. A mismatch is a structural gap — the section does not fulfil its promise.
+
+==Pages with this as subject==
+{{#ask:
+[[has subject::ArgMap]] AND
+[[Category:Article]]
+|?released
+|?reports
+|sort=released
+|order=desc
+}}
+
+===Quotes===
+'''Books'''
+{{#ask:
+[[Category:Book]] AND [[has subject::ArgMap]]
+|?released
+|?ArgMap
+|sort=released
+|order=desc}}
+'''Reviews'''
+{{#ask:
+[[Category:Review article]] AND [[has subject::ArgMap]]
+|?released
+|?ArgMap
+|sort=released
+|order=desc}}
+
+===Other===
+{{#ask:[[has subject::ArgMap]]|format=ul}}
+
+[[Category:Academic writing]]
+[[Category:Notation systems]]

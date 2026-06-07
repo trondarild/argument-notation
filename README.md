@@ -105,15 +105,24 @@ exit:   [ExitState]
 
 Sections chain the same way claims do. Each section's exit state must equal the next section's entry state — this is the coherence check at the paper level.
 
+Section transitions use stable string identifiers, not numeric labels. Numeric labels break whenever a section is inserted or reordered; identifiers do not. Top-level sections use a `sec_` prefix; subsections use `subsec_`. The full title follows ` — ` as an optional annotation.
+
 ```
 [InitialReaderState]
-  ↓ SECTION 1: Introduction
+  ↓ sec_introduction — Introduction
 [FieldEstablished ⊗ Puzzle]
-  ↓ SECTION 2: ...
+  ↓ sec_background — Background / Prior Work
 [SectionTwoExit]
-  ↓ SECTION 3: ...
+  ↓ sec_core_argument — Core Argument
   ...
 [Implication]
+```
+
+Subsection chains inside a section follow the same convention:
+
+```
+  ↓ subsec_wakef_states — Wakefulness states reorganize coordination
+  ↓ subsec_altered_states — Altered states as reconfigurations
 ```
 
 ---
